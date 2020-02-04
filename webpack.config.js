@@ -6,6 +6,13 @@ module.exports = {
     filename: `bundle.js`,
     path: path.join(__dirname, `public`)
   },
+  resolve: {
+    extensions: [`.js`, `.jsx`],
+    alias: {
+      '@': path.resolve(__dirname, `src`),
+      '@components': path.resolve(__dirname, `src/components`)
+    }
+  },
   devServer: {
     contentBase: path.join(__dirname, `public`),
     open: true,
