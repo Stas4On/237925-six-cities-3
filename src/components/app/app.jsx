@@ -1,5 +1,5 @@
-import React from 'react';
-import Main from "../main/main";
+import React from "react";
+import Main from "@components/main/main";
 
 const App = (props) => {
   return (
