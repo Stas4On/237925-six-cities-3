@@ -1,10 +1,11 @@
 import React from 'react';
 import Main from "../main/main";
 
-const App = () => {
+const App = (props) => {
   return (
     <React.Fragment>
-      <Main />
+      {/* eslint-disable-next-line react/prop-types */}
+      <Main numberRentalOffers={props.numberRentalOffers}/>
     </React.Fragment>
   );
 };
