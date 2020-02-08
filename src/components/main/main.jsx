@@ -1,8 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {rentalPeriod, typesOffers} from "@/common/constants";
+import types from "@/common/types";
 
 const Main = ({numberRentalOffers, offerInfoCards: cards}) => {
+  const addPremiumLabel = (isPremium) => {
+    return isPremium ?
+      <div className="place-card__mark">
+        <span>Premium</span>
+      </div>
+      : null;
+  };
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -95,11 +102,7 @@ const Main = ({numberRentalOffers, offerInfoCards: cards}) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 {cards.map((card) => <article key={card.id} className="cities__place-card place-card">
-                  {card.premium ?
-                    <div className="place-card__mark">
-                      <span>Premium</span>
-                    </div>
-                    : null}
+                  {addPremiumLabel(card.premium)}
                   <div className="cities__image-wrapper place-card__image-wrapper">
                     <a href="#">
                       <img className="place-card__image" src={card.imgUrl} width={260} height={200}
@@ -143,20 +146,8 @@ const Main = ({numberRentalOffers, offerInfoCards: cards}) => {
 };
 
 Main.propTypes = {
-  offerInfoCards: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        period: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        type: PropTypes.number.isRequired,
-        imgUrl: PropTypes.string.isRequired,
-        favorite: PropTypes.bool.isRequired,
-        premium: PropTypes.bool.isRequired,
-        id: PropTypes.number.isRequired
-      })
-  ),
-  numberRentalOffers: PropTypes.number.isRequired
+  offerInfoCards: types.offerInfoCards,
+  numberRentalOffers: types.numberRentalOffers
 };
 
 export default Main;
