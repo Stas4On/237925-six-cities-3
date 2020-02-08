@@ -1,13 +1,18 @@
 import React from "react";
 import Main from "@components/main/main";
+import types from "@/common/types";
 
-const App = (props) => {
+const App = ({numberRentalOffers, offerInfoCards}) => {
   return (
-    <React.Fragment>
-      {/* eslint-disable-next-line react/prop-types */}
-      <Main numberRentalOffers={props.numberRentalOffers}/>
-    </React.Fragment>
+    <>
+      <Main numberRentalOffers={numberRentalOffers} offerInfoCards={offerInfoCards}/>
+    </>
   );
+};
+
+App.propTypes = {
+  offerInfoCards: types.offerInfoCards,
+  numberRentalOffers: types.numberRentalOffers
 };
 
 export default App;
