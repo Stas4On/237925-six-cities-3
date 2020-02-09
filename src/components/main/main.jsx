@@ -2,14 +2,13 @@ import React from "react";
 import {rentalPeriod, typesOffers} from "@/common/constants";
 import types from "@/common/types";
 
-const Main = ({numberRentalOffers, offerInfoCards: cards}) => {
-  const addPremiumLabel = (isPremium) => {
-    return isPremium ?
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
-      : null;
-  };
+const Main = ({numberRentalOffers, offerInfoCards: cards, onTitleCardClick}) => {
+  const addPremiumLabel = (isPremium) => isPremium ?
+    <div className="place-card__mark">
+      <span>Premium</span>
+    </div>
+    : null;
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -129,7 +128,7 @@ const Main = ({numberRentalOffers, offerInfoCards: cards}) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">{card.name}</a>
+                      <a className="place-card__name-link" href="#" onClick={onTitleCardClick}>{card.name}</a>
                     </h2>
                     <p className="place-card__type">{typesOffers[card.type]}</p>
                   </div>
@@ -147,7 +146,8 @@ const Main = ({numberRentalOffers, offerInfoCards: cards}) => {
 
 Main.propTypes = {
   offerInfoCards: types.offerInfoCards,
-  numberRentalOffers: types.numberRentalOffers
+  numberRentalOffers: types.numberRentalOffers,
+  onTitleCardClick: types.onTitleCardClick
 };
 
 export default Main;
