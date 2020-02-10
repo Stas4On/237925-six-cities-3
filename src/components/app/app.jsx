@@ -2,13 +2,15 @@ import React from "react";
 import Main from "@components/main/main";
 import types from "@/common/types";
 
-const App = ({numberRentalOffers, offerInfoCards, onTitleCardClick}) => {
+const App = ({numberRentalOffers, offerInfoCards}) => {
+  const titleLinkHandler = () => {};
+
   return (
     <>
       <Main
         numberRentalOffers={numberRentalOffers}
         offerInfoCards={offerInfoCards}
-        onTitleCardClick={onTitleCardClick}
+        onTitleCardClick={titleLinkHandler}
       />
     </>
   );
