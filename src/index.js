@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "@components/app/app";
-import {numberRentalOffers, offerInfoCards} from "@/common/mock";
+import {numberRentalOffers, offerInfoCards} from "@/mocks/offers";
 
 const init = () => {
   ReactDOM.render(
