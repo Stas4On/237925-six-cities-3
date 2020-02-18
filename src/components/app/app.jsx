@@ -18,8 +18,7 @@ const App = ({numberRentalOffers, offerInfoCards}) => {
 
 App.propTypes = {
   offerInfoCards: types.offerInfoCards,
-  numberRentalOffers: types.numberRentalOffers,
-  onTitleCardClick: types.onTitleCardClick
+  numberRentalOffers: types.numberRentalOffers
 };
 
 export default App;

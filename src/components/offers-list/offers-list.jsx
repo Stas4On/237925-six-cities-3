@@ -20,14 +20,13 @@ export class OffersList extends React.PureComponent {
   }
 
   handleFocusChange(state) {
-    console.log('state', state);
     this.setState(state);
   }
 }
 
 OffersList.propTypes = {
   offerInfoCards: types.offerInfoCards,
-  onTitleCardClick: types.onTitleCardClick
+  onTitleCardClick: types.func
 };
 
 export default OffersList;

@@ -24,7 +24,7 @@ const types = {
     id: PropTypes.number.isRequired
   }),
   numberRentalOffers: PropTypes.number.isRequired,
-  onTitleCardClick: PropTypes.func
+  func: PropTypes.func.isRequired
 };
 
 export default types;

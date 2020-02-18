@@ -1,12 +1,11 @@
 import React from "react";
 import {typesOffers} from "@/common/constants";
 import types from "@/common/types";
-import OffersList from "@components/offers-list/offers-list";
 
-class OfferCard extends React.PureComponent{
+class OfferCard extends React.PureComponent {
   constructor(props) {
-    super(props)
-    this.handleFocus = this.handleFocus.bind(this)
+    super(props);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   handleFocus(data) {
@@ -15,14 +14,14 @@ class OfferCard extends React.PureComponent{
 
   render() {
     const {offerCard: card, onTitleCardClick} = this.props;
-
+    console.log(card);
     return (
-      <article key={card.id} className="cities__place-card place-card" onMouseEnter={() => this.handleFocus(card)} onMouseLeave={() => this.handleFocus(null)}>
+      <article className="cities__place-card place-card" onMouseEnter={() => this.handleFocus(card)} onMouseLeave={() => this.handleFocus(null)}>
         {this.addPremiumLabel(card.premium)}
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
             <img className="place-card__image" src={card.imgUrl} width={260} height={200}
-                 alt="Place image"/>
+              alt="Place image"/>
           </a>
         </div>
         <div className="place-card__info">
@@ -50,21 +49,22 @@ class OfferCard extends React.PureComponent{
           <p className="place-card__type">{typesOffers[card.type]}</p>
         </div>
       </article>
-    )
+    );
   }
 
   addPremiumLabel(isPremium) {
     return isPremium ?
-    <div className="place-card__mark">
-      <span>Premium</span>
-    </div>
-    : null;
+      <div className="place-card__mark">
+        <span>Premium</span>
+      </div>
+      : null;
   }
 }
 
 OfferCard.propTypes = {
   card: types.card,
-  onTitleCardClick: types.onTitleCardClick
+  onTitleCardClick: types.func,
+  onFocus: types.func
 };
 
 export default OfferCard;

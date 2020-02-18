@@ -23,7 +23,7 @@ const mockEvent = {
 
 
 it(`Hover on card should pass to the callback data-object from which this card was created`, () => {
-  const {card} = mock;
+  const card = mock;
   const onTitleCardClick = jest.fn();
   const onFocus = jest.fn();
 
@@ -40,4 +40,22 @@ it(`Hover on card should pass to the callback data-object from which this card w
   expect(onFocus).toHaveBeenCalledTimes(1);
 
   expect(onFocus.mock.calls[0][0]).toMatchObject(card);
+});
+
+it(`Should title link be pressed`, () => {
+  const card = mock;
+  const onTitleCardClick = jest.fn();
+  const onFocus = jest.fn();
+
+  const screen = shallow(<OfferCard
+    offerCard={card}
+    onTitleCardClick={onTitleCardClick}
+    onFocus={onFocus}
+  />);
+
+  const titleCard = screen.find(`.place-card__name-link`).at(0);
+
+  titleCard.props().onClick();
+
+  expect(onTitleCardClick.mock.calls.length).toBe(1);
 });
