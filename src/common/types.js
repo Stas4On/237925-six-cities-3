@@ -13,7 +13,7 @@ const types = {
         id: PropTypes.number.isRequired
       })
   ),
-  card: PropTypes.objectOf({
+  card: PropTypes.shape({
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,

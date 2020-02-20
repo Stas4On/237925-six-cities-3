@@ -34,7 +34,7 @@ exports[`OfferCard should render card correctly 1`] = `
           className="place-card__price-value"
         >
           €
-          50
+          150
         </b>
         <span
           className="place-card__price-text"
@@ -71,7 +71,7 @@ exports[`OfferCard should render card correctly 1`] = `
         <span
           style={
             Object {
-              "width": "20%",
+              "width": "60%",
             }
           }
         />
@@ -90,7 +90,7 @@ exports[`OfferCard should render card correctly 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Wood and stone place
+        Beautiful apartment
       </a>
     </h2>
     <p

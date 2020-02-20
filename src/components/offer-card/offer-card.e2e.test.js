@@ -2,20 +2,9 @@ import React from "react";
 import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import OfferCard from "@components/offer-card/offer-card";
+import {offerCards} from "@/test-utils/mocks";
 
 configure({adapter: new Adapter()});
-
-const mock = {
-  name: `Beautiful apartment`,
-  price: 150,
-  rating: 3,
-  type: `apartment`,
-  imgUrl: `img/room.jpg`,
-  favorite: false,
-  premium: false,
-  id: 34
-};
-
 
 const mockEvent = {
   preventDefault() {}
@@ -23,7 +12,7 @@ const mockEvent = {
 
 
 it(`Hover on card should pass to the callback data-object from which this card was created`, () => {
-  const card = mock;
+  const card = offerCards[0];
   const onTitleCardClick = jest.fn();
   const onFocus = jest.fn();
 
@@ -43,7 +32,7 @@ it(`Hover on card should pass to the callback data-object from which this card w
 });
 
 it(`Should title link be pressed`, () => {
-  const card = mock;
+  const card = offerCards[0];
   const onTitleCardClick = jest.fn();
   const onFocus = jest.fn();
 
