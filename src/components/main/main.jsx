@@ -3,7 +3,6 @@ import types from "@/common/types";
 import OffersList from "@components/offers-list/offers-list";
 
 const Main = ({numberRentalOffers, offerInfoCards, onTitleCardClick}) => {
-  console.log(onTitleCardClick);
   return (
     <div className="page page--gray page--main">
       <header className="header">
