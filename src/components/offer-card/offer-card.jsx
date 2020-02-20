@@ -14,7 +14,6 @@ class OfferCard extends React.PureComponent {
 
   render() {
     const {offerCard: card, onTitleCardClick} = this.props;
-    console.log(card);
     return (
       <article className="cities__place-card place-card" onMouseEnter={() => this.handleFocus(card)} onMouseLeave={() => this.handleFocus(null)}>
         {this.addPremiumLabel(card.premium)}
@@ -62,7 +61,7 @@ class OfferCard extends React.PureComponent {
 }
 
 OfferCard.propTypes = {
-  card: types.card,
+  offerCard: types.card,
   onTitleCardClick: types.func,
   onFocus: types.func
 };

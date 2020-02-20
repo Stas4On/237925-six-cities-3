@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import OfferCard from "@components/offer-card/offer-card";
+import OffersList from "@components/offers-list/offers-list";
 
 const offerInfoCards = [
   {
@@ -19,7 +19,7 @@ const handleTitleClick = () => {};
 
 it(`OfferList should render correctly`, () => {
   const tree = renderer
-    .create(<OfferCard
+    .create(<OffersList
       offerInfoCards = {offerInfoCards}
       onTitleCardClick={handleTitleClick}
     />).toJSON();

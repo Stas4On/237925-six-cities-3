@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import OfferCard from "@components/offer-card/offer-card";
 
-const offerInfoCards = {
+const offerCard = {
   name: `Wood and stone place`,
   price: 50,
   rating: 1,
@@ -20,7 +20,7 @@ it(`OfferCard should render card correctly`, () => {
   const tree = renderer
     .create(<OfferCard
       onFocus={handleCardFocus}
-      offerInfoCards = {offerInfoCards}
+      offerCard = {offerCard}
       onTitleCardClick={handleTitleClick}
     />).toJSON();
 
