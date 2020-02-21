@@ -1,14 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "@components/main/main";
-import {numberRentalOffers, offerCards} from "@/test-utils/mocks";
+import OffersList from "@components/offers-list/offers-list";
+import {offerCards} from "@/test-utils/mocks";
 
 const handleTitleClick = () => {};
 
-it(`<Main /> should render cards offers`, () => {
+it(`OfferList should render correctly`, () => {
   const tree = renderer
-    .create(<Main
-      numberRentalOffers={numberRentalOffers}
+    .create(<OffersList
       offerInfoCards = {offerCards}
       onTitleCardClick={handleTitleClick}
     />).toJSON();
