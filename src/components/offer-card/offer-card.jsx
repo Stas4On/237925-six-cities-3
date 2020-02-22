@@ -8,14 +8,14 @@ class OfferCard extends React.PureComponent {
     this.handleFocus = this.handleFocus.bind(this);
   }
 
-  handleFocus(data) {
-    this.props.onFocus(data);
+  handleFocus(offerId) {
+    this.props.onFocus(offerId);
   }
 
   render() {
     const {offerCard: card, onTitleCardClick} = this.props;
     return (
-      <article className="cities__place-card place-card" onMouseEnter={() => this.handleFocus(card)} onMouseLeave={() => this.handleFocus(null)}>
+      <article className="cities__place-card place-card" onMouseEnter={() => this.handleFocus(card.id)} onMouseLeave={() => this.handleFocus(null)}>
         {this.addPremiumLabel(card.premium)}
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">

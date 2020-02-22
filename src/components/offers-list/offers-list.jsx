@@ -19,8 +19,8 @@ export class OffersList extends React.PureComponent {
     );
   }
 
-  handleFocusChange(state) {
-    this.setState(state);
+  handleFocusChange(activeOffer) {
+    this.setState(activeOffer);
   }
 }
 
