@@ -6,8 +6,8 @@ import {numberRentalOffers, offerCards} from "@/test-utils/mocks";
 it(`<App /> should render <Main />`, () => {
   const tree = renderer
     .create(<App
-      numberRentalOffers={numberRentalOffers}
-      offerInfoCards = {offerCards}
+      numberRentalOffers = {numberRentalOffers}
+      offers = {offerCards}
     />).toJSON();
 
   expect(tree).toMatchSnapshot();

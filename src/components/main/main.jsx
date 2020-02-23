@@ -2,7 +2,7 @@ import React from "react";
 import types from "@/common/types";
 import OffersList from "@components/offers-list/offers-list";
 
-const Main = ({numberRentalOffers, offerInfoCards, onTitleCardClick}) => {
+const Main = ({numberRentalOffers, offers, onTitleCardClick}) => {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -94,7 +94,7 @@ const Main = ({numberRentalOffers, offerInfoCards, onTitleCardClick}) => {
                 */}
               </form>
               <OffersList
-                offerInfoCards={offerInfoCards}
+                offers={offers}
                 onTitleCardClick={onTitleCardClick}
               />
             </section>
@@ -108,7 +108,7 @@ const Main = ({numberRentalOffers, offerInfoCards, onTitleCardClick}) => {
 };
 
 Main.propTypes = {
-  offerInfoCards: types.offerInfoCards,
+  offers: types.offers,
   numberRentalOffers: types.numberRentalOffers,
   onTitleCardClick: types.func
 };

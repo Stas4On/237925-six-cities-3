@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "@components/app/app";
-import {numberRentalOffers, offerInfoCards} from "@/mocks/offers";
+import {numberRentalOffers, offers} from "@/mocks/offers";
 
 const init = () => {
   ReactDOM.render(
-      <App numberRentalOffers={numberRentalOffers} offerInfoCards={offerInfoCards} />,
+      <App numberRentalOffers={numberRentalOffers} offers={offers} />,
       document.getElementById(`root`)
   );
 };

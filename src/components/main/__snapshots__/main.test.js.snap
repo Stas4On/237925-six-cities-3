@@ -499,7 +499,7 @@ exports[`<Main /> should render cards offers 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "46.6%",
+                          "width": "40%",
                         }
                       }
                     />

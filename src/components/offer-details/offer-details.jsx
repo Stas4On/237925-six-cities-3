@@ -1,7 +1,11 @@
 import React from "react";
 import types from "@/common/types";
+import PropTypes from "prop-types";
+import {typesOffers} from "@/common/constants";
 
-const OfferDetails = () => {
+const OfferDetails = ({offers, id}) => {
+  const offer = offers.find((item) => item.id === id);
+
   return (
     <div className="page">
       <header className="header">
@@ -30,24 +34,11 @@ const OfferDetails = () => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
+              { offer.photos.map((photoSrc) =>
+                <div key={offer.id + Math.random()} className="property__image-wrapper">
+                  <img className="property__image" src={photoSrc} alt="Photo studio"/>
+                </div>
+              )}
             </div>
           </div>
           <div className="property__container container">
@@ -57,7 +48,7 @@ const OfferDetails = () => {
               </div>
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  Beautiful &amp; luxurious studio at great location
+                  {offer.name}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon" width={31} height={33}>
@@ -68,80 +59,50 @@ const OfferDetails = () => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `80%`}}/>
+                  <span style={{width: Math.round(offer.rating) * 20 + `%`}}/>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <span className="property__rating-value rating__value">{offer.rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  Apartment
+                  {typesOffers[offer.type]}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  3 Bedrooms
+                  {offer.bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max 4 adults
+                  Max {offer.guests} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">€120</b>
+                <b className="property__price-value">{offer.price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  <li className="property__inside-item">
-                    Wi-Fi
-                  </li>
-                  <li className="property__inside-item">
-                    Washing machine
-                  </li>
-                  <li className="property__inside-item">
-                    Towels
-                  </li>
-                  <li className="property__inside-item">
-                    Heating
-                  </li>
-                  <li className="property__inside-item">
-                    Coffee machine
-                  </li>
-                  <li className="property__inside-item">
-                    Baby seat
-                  </li>
-                  <li className="property__inside-item">
-                    Kitchen
-                  </li>
-                  <li className="property__inside-item">
-                    Dishwasher
-                  </li>
-                  <li className="property__inside-item">
-                    Cabel TV
-                  </li>
-                  <li className="property__inside-item">
-                    Fridge
-                  </li>
+                  { offer.features.map((feature) => (
+                    <li key={offer.id - Math.random()} className="property__inside-item">
+                      {feature}
+                    </li>
+                  )
+                  )}
                 </ul>
               </div>
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width={74} height={74} alt="Host avatar"/>
+                    <img className="property__avatar user__avatar" src={offer.avatar} width={74} height={74} alt="Host avatar"/>
                   </div>
                   <span className="property__user-name">
-                      Angelina
+                    {offer.owner}
                   </span>
                 </div>
                 <div className="property__description">
                   <p className="property__text">
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The
-                    building is green and from 18th century.
-                  </p>
-                  <p className="property__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where
-                    the
-                    bustle of the city comes to rest in this alley flowery and colorful.
+                    {offer.description}
                   </p>
                 </div>
               </div>
@@ -207,7 +168,7 @@ const OfferDetails = () => {
                       </svg>
                     </label>
                   </div>
-                  <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" defaultValue={""}/>
+                  <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" defaultValue={``}/>
                   <div className="reviews__button-wrapper">
                     <p className="reviews__help">
                       To submit review please make sure to set <span className="reviews__star">rating</span> and
@@ -278,7 +239,7 @@ const OfferDetails = () => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: '80%'}}/>
+                      <span style={{width: `80%`}}/>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -324,6 +285,11 @@ const OfferDetails = () => {
         </div>
       </main>
     </div>);
+};
+
+OfferDetails.propTypes = {
+  offers: types.offers,
+  id: PropTypes.number
 };
 
 export default OfferDetails;

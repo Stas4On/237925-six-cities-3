@@ -5,27 +5,29 @@ import types from "@/common/types";
 export class OffersList extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = null;
+    this.state = {
+      activeOffer: null
+    };
     this.handleFocusChange = this.handleFocusChange.bind(this);
   }
 
   render() {
-    const {offerInfoCards, onTitleCardClick} = this.props;
+    const {offers, onTitleCardClick} = this.props;
 
     return (
       <div className="cities__places-list places__list tabs__content">
-        {offerInfoCards.map((card) => <OfferCard key={card.id} offerCard={card} onTitleCardClick={onTitleCardClick} onFocus={this.handleFocusChange}/>)}
+        {offers.map((card) => <OfferCard key={card.id} offerCard={card} onTitleCardClick={onTitleCardClick} onFocus={this.handleFocusChange}/>)}
       </div>
     );
   }
 
   handleFocusChange(activeOffer) {
-    this.setState(activeOffer);
+    this.setState({activeOffer});
   }
 }
 
 OffersList.propTypes = {
-  offerInfoCards: types.offerInfoCards,
+  offers: types.offers,
   onTitleCardClick: types.func
 };
 

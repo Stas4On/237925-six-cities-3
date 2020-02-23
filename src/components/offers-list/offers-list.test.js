@@ -8,7 +8,7 @@ const handleTitleClick = () => {};
 it(`OfferList should render correctly`, () => {
   const tree = renderer
     .create(<OffersList
-      offerInfoCards = {offerCards}
+      offers = {offerCards}
       onTitleCardClick={handleTitleClick}
     />).toJSON();
 
