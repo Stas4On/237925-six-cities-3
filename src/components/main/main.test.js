@@ -9,7 +9,7 @@ it(`<Main /> should render cards offers`, () => {
   const tree = renderer
     .create(<Main
       numberRentalOffers={numberRentalOffers}
-      offerInfoCards = {offerCards}
+      offers = {offerCards}
       onTitleCardClick={handleTitleClick}
     />).toJSON();
 

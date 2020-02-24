@@ -5,17 +5,22 @@ import types from "@/common/types";
 class OfferCard extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.handleFocus = this.handleFocus.bind(this);
+    this._handleFocus = this._handleFocus.bind(this);
+    this._handleTitleClick = this._handleTitleClick.bind(this);
   }
 
-  handleFocus(data) {
-    this.props.onFocus(data);
+  _handleFocus(offerId) {
+    this.props.onFocus(offerId);
+  }
+
+  _handleTitleClick() {
+    this.props.onTitleCardClick(this.props.offerCard.id);
   }
 
   render() {
-    const {offerCard: card, onTitleCardClick} = this.props;
+    const {offerCard: card} = this.props;
     return (
-      <article className="cities__place-card place-card" onMouseEnter={() => this.handleFocus(card)} onMouseLeave={() => this.handleFocus(null)}>
+      <article className="cities__place-card place-card" onMouseEnter={() => this._handleFocus(card.id)} onMouseLeave={() => this._handleFocus(null)}>
         {this.addPremiumLabel(card.premium)}
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
@@ -38,12 +43,12 @@ class OfferCard extends React.PureComponent {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: card.rating * 20 + `%`}}/>
+              <span style={{width: Math.round(card.rating) * 20 + `%`}}/>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
           <h2 className="place-card__name">
-            <a className="place-card__name-link" href="#" onClick={onTitleCardClick}>{card.name}</a>
+            <a className="place-card__name-link" href="#" onClick={this._handleTitleClick}>{card.name}</a>
           </h2>
           <p className="place-card__type">{typesOffers[card.type]}</p>
         </div>

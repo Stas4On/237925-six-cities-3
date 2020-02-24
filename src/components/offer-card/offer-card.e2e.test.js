@@ -28,7 +28,7 @@ it(`Hover on card should pass to the callback data-object from which this card w
 
   expect(onFocus).toHaveBeenCalledTimes(1);
 
-  expect(onFocus.mock.calls[0][0]).toMatchObject(card);
+  expect(onFocus.mock.calls[0][0]).toBe(card.id);
 });
 
 it(`Should title link be pressed`, () => {
@@ -47,4 +47,6 @@ it(`Should title link be pressed`, () => {
   titleCard.props().onClick();
 
   expect(onTitleCardClick.mock.calls.length).toBe(1);
+
+  expect(onTitleCardClick.mock.calls[0][0]).toBe(card.id);
 });
