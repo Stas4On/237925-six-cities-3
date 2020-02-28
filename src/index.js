@@ -5,7 +5,8 @@ import {numberRentalOffers, offers} from "@/mocks/offers";
 
 const init = () => {
   ReactDOM.render(
-      <App numberRentalOffers={numberRentalOffers} offers={offers} />,
+      <App numberRentalOffers={numberRentalOffers} offers={offers}>
+      </App>,
       document.getElementById(`root`)
   );
 };
