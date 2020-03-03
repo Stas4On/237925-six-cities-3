@@ -641,7 +641,16 @@ exports[`<Main /> should render cards offers 1`] = `
         >
           <section
             className="cities__map map"
-          />
+          >
+            <div
+              id="map"
+              style={
+                Object {
+                  "height": "100%",
+                }
+              }
+            />
+          </section>
         </div>
       </div>
     </div>
