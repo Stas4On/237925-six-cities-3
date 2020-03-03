@@ -7,24 +7,31 @@ class Map extends PureComponent {
     super(props);
     this.coordinates = props.offers.map((offer) => offer.coordinates);
     this.mapRef = React.createRef();
-    this.city = [52.38333, 4.9];
-    this.zoom = 12;
+    this.mapConf = {
+      city: [52.38333, 4.9],
+      zoom: 12,
+      iconSize: [30, 30],
+      iconUrl: `img/pin.svg`,
+
+    };
     this.map = null;
   }
 
   componentDidMount() {
     if (this.mapRef.current) {
       this.map = leaflet.map(this.mapRef.current.id, {
-        center: this.city,
-        zoom: this.zoom,
+        center: this.mapConf.city,
+        zoom: this.mapConf.zoom,
         zoomControl: false,
         marker: true
       });
+
       const icon = leaflet.icon({
-        iconUrl: `img/pin.svg`,
-        iconSize: [30, 30]
+        iconUrl: this.mapConf.iconUrl,
+        iconSize: this.mapConf.iconSize
       });
-      this.map.setView(this.city, this.zoom);
+
+      this.map.setView(this.mapConf.city, this.mapConf.zoom);
 
       leaflet
         .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -32,11 +39,11 @@ class Map extends PureComponent {
         })
         .addTo(this.map);
 
-      for (let cord of this.coordinates) {
+      this.coordinates.forEach((cord) => {
         leaflet
           .marker(cord, {icon})
           .addTo(this.map);
-      }
+      });
     }
   }
 
