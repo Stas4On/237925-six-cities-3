@@ -4,3 +4,5 @@ export const typesOffers = {
   'house': `House`,
   'hotel': `hotel`
 };
+
+export const MAX_CITIES_LENGTH = 6;

@@ -1,8 +1,8 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import OfferCard from "@components/offer-card/offer-card";
 import types from "@/common/types";
 
-export class OffersList extends React.PureComponent {
+export class OffersList extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

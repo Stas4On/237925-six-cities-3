@@ -5,7 +5,6 @@ import types from "@/common/types";
 class Map extends PureComponent {
   constructor(props) {
     super(props);
-    this.coordinates = props.offers.map((offer) => offer.coordinates);
     this.mapRef = React.createRef();
     this.mapConf = {
       city: [52.38333, 4.9],
@@ -15,6 +14,11 @@ class Map extends PureComponent {
 
     };
     this.map = null;
+    this.layerGroupStorage = null;
+    this.icon = leaflet.icon({
+      iconUrl: this.mapConf.iconUrl,
+      iconSize: this.mapConf.iconSize
+    });
   }
 
   componentDidMount() {
@@ -26,11 +30,6 @@ class Map extends PureComponent {
         marker: true
       });
 
-      const icon = leaflet.icon({
-        iconUrl: this.mapConf.iconUrl,
-        iconSize: this.mapConf.iconSize
-      });
-
       this.map.setView(this.mapConf.city, this.mapConf.zoom);
 
       leaflet
@@ -39,12 +38,37 @@ class Map extends PureComponent {
         })
         .addTo(this.map);
 
-      this.coordinates.forEach((cord) => {
-        leaflet
-          .marker(cord, {icon})
-          .addTo(this.map);
-      });
+      this.layerGroupStorage = {map: this.map, layerGroup: leaflet.layerGroup().addTo(this.map)};
+
+      this.updateMap();
     }
+  }
+
+  componentDidUpdate() {
+    const {layerGroup} = this.layerGroupStorage;
+    this.map.setView(this.mapConf.city, this.mapConf.zoom);
+    layerGroup.clearLayers();
+    this.updateMap();
+  }
+
+  componentWillUnmount() {
+    this.map = null;
+  }
+
+  getCords(offers) {
+    return offers.map((offer) => offer.coordinates);
+  }
+
+  updateMap() {
+    const coordinates = this.getCords(this.props.offers);
+    const {layerGroup} = this.layerGroupStorage;
+    const icon = this.icon;
+
+    coordinates.forEach((cord) => {
+      leaflet
+        .marker(cord, {icon})
+        .addTo(layerGroup);
+    });
   }
 
   render() {
