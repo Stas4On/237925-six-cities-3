@@ -3,6 +3,8 @@ import Main from "@components/main/main";
 import types from "@/common/types";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import OfferDetails from "@components/offer-details/offer-details";
+import {ActionCreator} from "@/reducer";
+import {connect} from "react-redux";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -19,16 +21,18 @@ class App extends React.PureComponent {
   }
 
   _renderApp() {
-    const {numberRentalOffers, offers} = this.props;
+    const {offers, city, cities, onChangeCity} = this.props;
 
     if (this.state.activeOffer) {
       return <OfferDetails id={this.state.activeOffer} offers={offers} />;
     }
 
     return <Main
-      numberRentalOffers={numberRentalOffers}
+      onChangeCity = {onChangeCity}
       offers={offers}
       onTitleCardClick={this._handleOfferTitleClick}
+      city = {city}
+      cities={cities}
     />;
   }
 
@@ -50,9 +54,24 @@ class App extends React.PureComponent {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  onChangeCity(city) {
+    dispatch(ActionCreator.changeCity(city));
+  }
+});
+
+const mapStateToProps = (state) => ({
+  city: state.city,
+  offers: state.offers,
+  cities: state.cities
+});
+
 App.propTypes = {
   offers: types.offers,
-  numberRentalOffers: types.numberRentalOffers
+  city: types.city,
+  cities: types.cities,
+  onChangeCity: types.func
 };
 
-export default App;
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

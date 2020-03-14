@@ -1,12 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
+import {reducer} from "./reducer.js";
 import App from "@components/app/app";
-import {numberRentalOffers, offers} from "@/mocks/offers";
+import {ActionCreator} from "@/reducer";
 
 const init = () => {
+  const store = createStore(
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+  );
+
+  store.dispatch(ActionCreator.loadOffers());
+
   ReactDOM.render(
-      <App numberRentalOffers={numberRentalOffers} offers={offers}>
-      </App>,
+      <Provider store={store}>
+        <App />
+      </Provider>,
       document.getElementById(`root`)
   );
 };

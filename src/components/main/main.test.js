@@ -1,16 +1,19 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "@components/main/main";
-import {numberRentalOffers, offerCards} from "@/test-utils/mocks";
+import {offers} from "@/mocks/offers";
+import {cities} from "@/test-utils/mocks";
 
-const handleTitleClick = () => {};
+const PARIS = `Paris`;
 
 it(`<Main /> should render cards offers`, () => {
   const tree = renderer
     .create(<Main
-      numberRentalOffers={numberRentalOffers}
-      offers = {offerCards}
-      onTitleCardClick={handleTitleClick}
+      onChangeCity = {() => {}}
+      offers={offers}
+      onTitleCardClick={() => {}}
+      city = {PARIS}
+      cities={cities}
     />).toJSON();
 
   expect(tree).toMatchSnapshot();
